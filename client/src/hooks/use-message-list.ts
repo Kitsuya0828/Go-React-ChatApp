@@ -14,8 +14,7 @@ export const useMessageList = (): Message[] => {
       }
   );
   socket.onmessage = (msg) => {
-    const content = JSON.parse(msg.data as string);
-    const message: Message = { content: content };
+    const message = JSON.parse(msg.data as string) as Message;
     updateMessageList(message);
   };
 

@@ -30,6 +30,7 @@ const MessageContent = styled(Box)({
 });
 
 const MessageTimestamp = styled(Box)({
+  marginTop: "5px",
   fontSize: "12px",
   color: "#999",
 });

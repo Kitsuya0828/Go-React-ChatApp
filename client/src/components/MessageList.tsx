@@ -6,45 +6,46 @@ import {
   MessageTimestamp,
 } from "./ChatComponents";
 
+const formatDate = (timestamp: string, format: string) => {
+  const date = new Date(timestamp);
+  format = format.replace(/YYYY/, date.getFullYear().toString());
+  format = format.replace(/MM/, (date.getMonth() + 1).toString());
+  format = format.replace(/DD/, date.getDate().toString());
+  format = format.replace(/hh/, date.getHours().toString());
+  format = format.replace(/mm/, date.getMinutes().toString());
+  format = format.replace(/ss/, date.getSeconds().toString());
+
+  return format;
+};
+
 export const MessageList = () => {
   const messageList = useMessageList();
 
   return (
-    // <div>
-    //   {messageList.map((m, i) => (
-    //     <div key={i}>{m.content}</div>
-    //   ))}
-    // </div>
     <MessagesContainer>
       {messageList.map((message, index) => (
         <MessageContainer
           key={index}
           sx={{
-            // alignSelf: message.sender === "user" ? "flex-end" : "flex-start",
-            alignSelf: "flex-start",
+            alignSelf: message.sender === "user" ? "flex-end" : "flex-start",
           }}
         >
           <MessageContent
             sx={{
-              //   bgcolor: message.sender === "user" ? "#DCF8C6" : "#FFF",
-              bgcolor: "#FFF",
-              //   color: message.sender === "user" ? "#000" : "#333",
-              color: "#333",
+              bgcolor: message.sender === "user" ? "#8DE055" : "#EDF1EE",
+              color: "#000",
             }}
           >
             {message.content}
           </MessageContent>
           <MessageTimestamp
             sx={{
-              color: "#999",
+              color: "#FFF",
               fontSize: "12px",
-              //   textAlign: message.sender === "user" ? "right" : "left",
-              textAlign: "left",
+              textAlign: message.sender === "user" ? "right" : "left",
             }}
           >
-            {message.timestamp !== undefined
-              ? message.timestamp.toLocaleString()
-              : "00:00"}
+            {formatDate(message.timestamp, "MM/DD hh:mm")}
           </MessageTimestamp>
         </MessageContainer>
       ))}
