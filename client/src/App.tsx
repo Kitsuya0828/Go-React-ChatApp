@@ -1,12 +1,16 @@
+import { Typography } from "@mui/material";
+import { ChatContainer } from "./components/ChatComponents";
 import { MessageInput } from "./components/MessageInput";
 import { MessageList } from "./components/MessageList";
 
 export const App = () => {
   return (
-    <div>
-      <h1>Simple Chat</h1>
-      <MessageInput />
+    <ChatContainer>
+      <Typography variant="h5" component="h1" sx={{ p: 2 }}>
+        LINE
+      </Typography>
       <MessageList />
-    </div>
+      <MessageInput />
+    </ChatContainer>
   );
 };
